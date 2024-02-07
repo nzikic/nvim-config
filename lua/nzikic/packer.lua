@@ -19,6 +19,13 @@ return require('packer').startup(function(use)
 	  end
   })
 
+  use ({
+	  "folke/tokyonight.nvim",
+	  lazy = false,
+	  priority = 1000,
+	  opts = {},
+  })
+
   use ('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
   use ('nvim-treesitter/playground')
   use ('theprimeagen/harpoon')
