@@ -1,0 +1,9 @@
+This repository was made to port nvim configuration easily to other computers.
+
+Resources:
+- official Neovim docs and docs of every plugin used
+- https://www.youtube.com/watch?v=w7i4amO_zaE
+- https://github.com/ThePrimeagen/.dotfiles
+- https://www.youtube.com/watch?v=u_OORAL_xSM
+- https://github.com/exosyphon/nvim/blob/main/after/plugin/telescope.lua
+
