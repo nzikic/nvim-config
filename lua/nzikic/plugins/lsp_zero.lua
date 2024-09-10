@@ -20,11 +20,14 @@ return {
                 sources = {
                     {name = 'nvim_lsp'},
                 },
-                mapping = cmp.mapping.preset.insert({
-                    ['<C-Space>'] = cmp.mapping.complete(),
+                mapping = {
+                    ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+                    ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavcmp_select }),
                     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-d>'] = cmp.mapping.scroll_docs(4),
-                }),
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<Tab>'] = cmp.mapping.confirm({ select = true })
+                },
                 snippet = {
                     expand = function(args)
                         vim.snippet.expand(args.body)
