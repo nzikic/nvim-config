@@ -11,6 +11,10 @@ return {
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
         vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Find files in source control" })
 
+        vim.keymap.set('n', '<leader>fWs', function ()
+            local word = vim.fn.expand("<cWORD>")
+            builtin.grep_string({ search = word })
+        end)
 
         -- Clone the default telescope configuration
         local telescopeConfig = require('telescope.config')
