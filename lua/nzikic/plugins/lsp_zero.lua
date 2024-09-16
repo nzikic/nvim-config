@@ -6,6 +6,12 @@ return {
         config = false,
     },
 
+    {
+        'williamboman/mason.nvim',
+        lazy = false,
+        config = true,
+    },
+
     -- Autocompletion
     {
         'hrsh7th/nvim-cmp',
@@ -20,14 +26,14 @@ return {
                 sources = {
                     {name = 'nvim_lsp'},
                 },
-                mapping = {
+                mapping = cmp.mapping.preset.insert({
                     ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
                     ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavcmp_select }),
                     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-d>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<Tab>'] = cmp.mapping.confirm({ select = true })
-                },
+                }),
                 snippet = {
                     expand = function(args)
                         vim.snippet.expand(args.body)
@@ -40,10 +46,12 @@ return {
     -- LSP
     {
         'neovim/nvim-lspconfig',
-        cmd = 'LspInfo',
+        cmd = {'LspInfo', 'LspInstall', 'LspStart'},
         event = {'BufReadPre', 'BufNewFile'},
         dependencies = {
             {'hrsh7th/cmp-nvim-lsp'},
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
         },
         config = function()
             local lsp_zero = require('lsp-zero')
@@ -71,6 +79,16 @@ return {
                 capabilities = require('cmp_nvim_lsp').default_capabilities()
             })
 
+            require('mason-lspconfig').setup({
+                ensure_installed = {},
+                handlers = {
+                    -- this first function is the "default handler"
+                    -- it applies to every language server without a "custom handler"
+                    function(server_name)
+                        require('lspconfig')[server_name].setup({})
+                    end,
+                }
+            })
             require('lspconfig').clangd.setup({
                 cmd = {
                     "clangd",
@@ -79,7 +97,7 @@ return {
                 }
             })
             require('lspconfig').cmake.setup({})
-            require('lspconfig').qmlls.setup({})
+            require('lspconfig').qmlls.setup({ cmd = { "qmlls6" } })
             require('lspconfig').bashls.setup({})
             require('lspconfig').ts_ls.setup({})
             require('lspconfig').eslint.setup({})
