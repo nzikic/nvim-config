@@ -79,6 +79,8 @@ return {
                 capabilities = require('cmp_nvim_lsp').default_capabilities()
             })
 
+            require('mason').setup()
+
             require('mason-lspconfig').setup({
                 ensure_installed = {},
                 handlers = {
@@ -89,6 +91,7 @@ return {
                     end,
                 }
             })
+
             require('lspconfig').clangd.setup({
                 cmd = {
                     "clangd",
