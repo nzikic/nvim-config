@@ -18,7 +18,8 @@ return {
         event = 'InsertEnter',
         dependencies = {
             { 'L3MON4D3/LuaSnip' },
-            { 'saadparwaiz1/cmp_luasnip' }
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-nvim-lsp-signature-help' }
         },
         config = function()
             local cmp = require('cmp')
@@ -27,6 +28,8 @@ return {
                 sources = cmp.config.sources({
                     {name = 'nvim_lsp'},
                     {name = 'luasnip'},
+                }, {
+                    {name = 'nvim_lsp_signature_help'}
                 }, {
                     {name = 'buffer'},
                 }),
