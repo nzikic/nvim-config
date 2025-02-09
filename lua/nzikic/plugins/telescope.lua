@@ -30,7 +30,7 @@ return {
         telescope.setup({
             vimgrep_arguments = vimgrep_arguments,
             preview = { filesize = 1 --[[ MB --]] },
-            pickers = {},
+            pickers = { find_files = { theme = "ivy" } },
         })
 
         telescope.load_extension('fzf')
