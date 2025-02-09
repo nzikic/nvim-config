@@ -28,11 +28,9 @@ return {
 
         local telescope = require('telescope')
         telescope.setup({
-            defaults = {
-                vimgrep_arguments = vimgrep_arguments,
-                preview = { filesize = 1 --[[ MB --]] },
-                pickers = {},
-            },
+            vimgrep_arguments = vimgrep_arguments,
+            preview = { filesize = 1 --[[ MB --]] },
+            pickers = {},
         })
 
         telescope.load_extension('fzf')
