@@ -1,7 +1,10 @@
 return {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+    },
     config = function()
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
@@ -23,12 +26,15 @@ return {
         table.insert(vimgrep_arguments, "--glob")
         table.insert(vimgrep_arguments, "!**/.git/*") -- dont search '.git' dir
 
-        require('telescope').setup({
+        local telescope = require('telescope')
+        telescope.setup({
             defaults = {
                 vimgrep_arguments = vimgrep_arguments,
                 preview = { filesize = 1 --[[ MB --]] },
                 pickers = {},
             },
         })
+
+        telescope.load_extension('fzf')
     end
 }
