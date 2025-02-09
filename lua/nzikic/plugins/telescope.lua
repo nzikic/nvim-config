@@ -31,6 +31,7 @@ return {
             vimgrep_arguments = vimgrep_arguments,
             preview = { filesize = 1 --[[ MB --]] },
             pickers = { find_files = { theme = "ivy" } },
+            extensions = { fzf = {} },
         })
 
         telescope.load_extension('fzf')
