@@ -1,7 +1,6 @@
 return {
-    {
-        "williamboman/mason.nvim"
-    },
+    { "williamboman/mason.nvim" },
+    { "williamboman/mason-lspconfig.nvim" },
     {
         'neovim/nvim-lspconfig',
         dependencies = {
@@ -17,11 +16,30 @@ return {
                 },
             },
             {'williamboman/mason.nvim'},
+            { "williamboman/mason-lspconfig.nvim" },
         },
         config = function()
             require('mason').setup()
+            require('mason-lspconfig').setup({
+                ensure_installed = {},
+                automatic_installation = false,
+                handlers = {
+                    -- this first function is the "default handler"
+                    -- it applies to every language server without a "custom handler"
+                    function(server_name)
+                        require('lspconfig')[server_name].setup({})
+                    end,
+                }
+            })
 
-            require'lspconfig'.lua_ls.setup({})
+            require('lspconfig').clangd.setup({
+                cmd = {
+                    "clangd",
+                    "--background-index",
+                    "--clang-tidy"
+                }
+            })
+            require('lspconfig').qmlls.setup({ cmd = { "qmlls6" } })
         end,
     },
 }
