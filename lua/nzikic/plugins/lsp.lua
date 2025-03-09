@@ -1,8 +1,6 @@
 return {
-    { "williamboman/mason.nvim" },
-    { "williamboman/mason-lspconfig.nvim" },
     {
-        'neovim/nvim-lspconfig',
+        "neovim/nvim-lspconfig",
         dependencies = {
             {
                 "folke/lazydev.nvim",
@@ -15,8 +13,9 @@ return {
                     },
                 },
             },
-            {'williamboman/mason.nvim'},
+            { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
+            { 'saghen/blink.cmp' },
         },
         config = function()
             require('mason').setup()
@@ -32,14 +31,24 @@ return {
                 }
             })
 
-            require('lspconfig').clangd.setup({
+            local lspconfig = require('lspconfig')
+
+            local lspconfig_defaults = lspconfig.util.default_config
+            lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+                'force',
+                lspconfig_defaults.capabilities,
+                require('blink.cmp').get_lsp_capabilities()
+            )
+
+            lspconfig.clangd.setup({
                 cmd = {
                     "clangd",
                     "--background-index",
                     "--clang-tidy"
                 }
             })
-            require('lspconfig').qmlls.setup({ cmd = { "qmlls6" } })
+
+            lspconfig.qmlls.setup({ cmd = { "qmlls6" } })
         end,
     },
 }
