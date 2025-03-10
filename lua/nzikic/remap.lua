@@ -1,5 +1,5 @@
 -- open explorer
-vim.keymap.set("n", "<leader>E", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 
 -- move selected line up/down
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
