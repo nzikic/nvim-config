@@ -15,7 +15,6 @@ return {
             },
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
-            { 'saghen/blink.cmp' },
         },
         config = function()
             require('mason').setup()
@@ -37,7 +36,7 @@ return {
             lspconfig_defaults.capabilities = vim.tbl_deep_extend(
                 'force',
                 lspconfig_defaults.capabilities,
-                require('blink.cmp').get_lsp_capabilities()
+                require('cmp_nvim_lsp').default_capabilities()
             )
 
             lspconfig.clangd.setup({
