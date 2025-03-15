@@ -25,3 +25,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('i', '<C-h>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
     end
 })
+
+vim.api.nvim_create_autocmd('BufEnter', {
+    desc = 'Copilot chat: set relative numbers, and treat copilot chat buffer filetype as markdown',
+    pattern = 'copilot-*',
+    callback = function ()
+        vim.opt_local.relativenumber = true
+        vim.opt_local.number = true
+        local ft = vim.bo.filetype
+        if ft == 'copilot-chat' then
+            vim.bo.filetype = 'markdown'
+        end
+    end
+})
