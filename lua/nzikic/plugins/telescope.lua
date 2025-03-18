@@ -47,12 +47,20 @@ local custom_multi_grep = function(opts)
     }):find()
 end
 
+local telescope_fzf_build_command = function ()
+    if vim.loop.os_uname().sysname == 'Windows_NT' then
+        return 'ninja'
+    end
+
+    return 'make'
+end
+
 return {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'ninja' }
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = telescope_fzf_build_command() }
     },
     config = function()
         local builtin = require('telescope.builtin')
