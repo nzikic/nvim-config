@@ -58,7 +58,7 @@ return {
         },
         event = "VeryLazy",
         keys = {
-            { '<leader>av', '<cmd>CopilotChatToggle<CR>', desc = 'CopilotChat | Fix diagnostics' },
+            { '<leader>av', '<cmd>CopilotChatToggle<CR>', desc = 'CopilotChat | Toggle chat' },
             { '<leader>ae', '<cmd>CopilotChatExplain<CR>', desc = 'CopilotChat | Explain code' },
             { '<leader>af', '<cmd>CopilotChatFixError<CR>', desc = 'CopilotChat | Fix diagnostics' },
             { '<leader>at', '<cmd>CopilotChatTests<CR>', desc = 'CopilotChat | Write tests' },
