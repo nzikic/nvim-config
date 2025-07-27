@@ -60,7 +60,8 @@ return {
     tag = "0.1.8",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        { 'nvim-telescope/telescope-fzf-native.nvim', build = telescope_fzf_build_command() }
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = telescope_fzf_build_command() },
+        "nvim-telescope/telescope-ui-select.nvim"
     },
     config = function()
         local builtin = require('telescope.builtin')
@@ -89,9 +90,13 @@ return {
             vimgrep_arguments = vimgrep_arguments,
             preview = { filesize = 1 --[[ MB --]] },
             pickers = { find_files = { theme = "ivy" } },
-            extensions = { fzf = {} },
+            extensions = {
+                fzf = {},
+                ['ui-select'] = require('telescope.themes').get_dropdown {}
+            },
         })
 
         telescope.load_extension('fzf')
+        telescope.load_extension('ui-select')
     end
 }
