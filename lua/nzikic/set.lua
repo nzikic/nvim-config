@@ -27,4 +27,6 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.colorcolumn = "100"
 
+vim.opt.winborder = "rounded"
+
 vim.g.mapleader = " "
