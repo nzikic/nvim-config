@@ -1,7 +1,7 @@
 return {
     {
         "CopilotC-Nvim/CopilotChat.nvim",
-        version = "v4.7.3",
+        version = "v4.7.4",
         opts = {
             question_header = "## User ",
             answer_header = "## Copilot ",
