@@ -6,7 +6,7 @@ return {
             question_header = "## User ",
             answer_header = "## Copilot ",
             error_header = "## Error ",
-            model = "claude-sonnet-4",
+            model = "claude-sonnet-4.5",
             mappings = {
 --                -- Use tab for completion
 --                complete = {
