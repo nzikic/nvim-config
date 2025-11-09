@@ -3,9 +3,9 @@ return {
         "CopilotC-Nvim/CopilotChat.nvim",
         version = "v4.7.4",
         opts = {
-            question_header = "## User ",
-            answer_header = "## Copilot ",
-            error_header = "## Error ",
+--            question_header = "## User ",
+--            answer_header = "## Copilot ",
+--            error_header = "## Error ",
             model = "claude-sonnet-4.5",
             mappings = {
 --                -- Use tab for completion
