@@ -5,7 +5,7 @@ This repository was made to port nvim configuration easily to other computers.
 ## Linux (openSUSE):
 
 ```
-$ sudo zypper in fd ripgrep clang-tools lua-language-server
+$ sudo zypper in fd ripgrep clang-tools fzf
 ```
 
 
