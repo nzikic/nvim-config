@@ -26,21 +26,19 @@ return {
                     -- this first function is the "default handler"
                     -- it applies to every language server without a "custom handler"
                     function(server_name)
-                        require('lspconfig')[server_name].setup({})
+                        vim.lsp.config(server_name, {})
                     end,
                 }
             })
 
-            local lspconfig = require('lspconfig')
-
-            local lspconfig_defaults = lspconfig.util.default_config
+            local lspconfig_defaults = require('lspconfig').util.default_config
             lspconfig_defaults.capabilities = vim.tbl_deep_extend(
                 'force',
                 lspconfig_defaults.capabilities,
                 require('blink.cmp').get_lsp_capabilities()
             )
 
-            lspconfig.clangd.setup({
+            vim.lsp.config("clangd", {
                 cmd = {
                     "clangd",
                     "--background-index",
@@ -48,7 +46,7 @@ return {
                 }
             })
 
-            lspconfig.qmlls.setup({ cmd = { "qmlls6" } })
+            vim.lsp.config("qmlls", { cmd = { "qmlls6" } })
         end,
     },
 }
