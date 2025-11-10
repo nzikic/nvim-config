@@ -17,6 +17,13 @@ local active_lsp_client = {
   icon = '',
 }
 
+local buffer_number = {
+  function()
+    return vim.api.nvim_get_current_buf()
+  end,
+  icon = '#'
+}
+
 local M ={
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -45,14 +52,14 @@ local M ={
       sections = {
         lualine_a = { 'mode' },
         lualine_b = {},
-        lualine_c = { 'diagnostics', 'filename', 'branch', 'diff' },
+        lualine_c = { 'diagnostics', 'filename', buffer_number, 'branch', 'diff' },
         lualine_x = { 'encoding', 'filetype', active_lsp_client },
         lualine_y = {},
         lualine_z = { 'selectioncount', 'progress', 'location' }
       },
       inactive_sections = {
         lualine_a = {},
-        lualine_b = { 'filename' },
+        lualine_b = { 'filename', buffer_number },
         lualine_c = {},
         lualine_x = { 'progress', 'location' },
         lualine_y = {},
