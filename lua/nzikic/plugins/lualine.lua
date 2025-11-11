@@ -7,6 +7,7 @@ local active_lsp_client = {
       return no_active_lsp_client
     end
     for _, client in ipairs(clients) do
+      ---@diagnostic disable-next-line: undefined-field
       local filetypes = client.config.filetypes
       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
         return client.name
