@@ -4,7 +4,6 @@ local setup_adapters = function(dap)
     command = "gdb",
     args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
   }
-
 end
 
 local M = {
@@ -15,7 +14,7 @@ local M = {
     "theHamsta/nvim-dap-virtual-text",
     "williamboman/mason.nvim",
   },
-  config = function ()
+  config = function()
     local dap = require("dap")
     local dapui = require("dapui")
 

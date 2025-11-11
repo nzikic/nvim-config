@@ -13,7 +13,7 @@ local M = {
   event = "VeryLazy",
   keys = {
     { '<leader>at', '<cmd>CopilotChatToggle<CR>', desc = 'CopilotChat | Toggle chat' },
-    { '<leader>as', '<cmd>CopilotChatStop<CR>', desc = 'CopilotChat | Stop current output' },
+    { '<leader>as', '<cmd>CopilotChatStop<CR>',   desc = 'CopilotChat | Stop current output' },
     { '<leader>ap', '<cmd>CopilotChatPrompt<CR>', desc = 'CopilotChat | Prompt Actions' }
   }
 }
