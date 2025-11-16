@@ -19,10 +19,10 @@ vim.keymap.set("n", "<leader>P", "\"+P")
 vim.keymap.set("v", "<leader>P", "\"+P")
 
 -- delete into blackhole register
-vim.keymap.set("n", "<leader>d", "\"_d")
-vim.keymap.set("v", "<leader>d", "\"_d")
-vim.keymap.set("n", "<leader>D", "\"_D")
-vim.keymap.set("v", "<leader>D", "\"_D")
+-- vim.keymap.set("n", "<leader>d", "\"_d")
+-- vim.keymap.set("v", "<leader>d", "\"_d")
+-- vim.keymap.set("n", "<leader>D", "\"_D")
+-- vim.keymap.set("v", "<leader>D", "\"_D")
 
 -- quickfix navigation
 vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
