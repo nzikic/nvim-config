@@ -80,9 +80,32 @@ local setup_dap_adapters_dotnet = function(dap)
   }
 end
 
+local setup_dap_adapters_javascript = function(dap)
+  dap.adapters['pwa-node'] = {
+    type = 'server',
+    host = 'localhost',
+    port = '${port}',
+    executable = {
+      command = 'js-debug-adapter',
+      args = { '${port}' }
+    }
+  }
+
+  dap.adapters['pwa-chrome'] = {
+    type = 'server',
+    host = 'localhost',
+    port = '${port}',
+    executable = {
+      command = 'js-debug-adapter',
+      args = { '${port}' }
+    }
+  }
+end
+
 local setup_dap_adapters = function(dap)
   setup_dap_adapters_cpp(dap)
   setup_dap_adapters_dotnet(dap)
+  setup_dap_adapters_javascript(dap)
 end
 
 local setup_dap_keymaps = function()
