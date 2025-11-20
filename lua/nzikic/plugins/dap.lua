@@ -16,12 +16,73 @@ local setup_dap_listeners = function(dap, dapui)
   end
 end
 
-local setup_dap_adapters = function(dap)
+local setup_dap_adapters_cpp = function(dap)
   dap.adapters.gdb = {
     type = "executable",
     command = "gdb",
     args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
   }
+
+  dap.adapters.lldb = {
+    type = 'executable',
+    command = vim.fn.executable('lldb-dap') == 1 and 'lldb-dap' or 'lldb-vscode',
+    name = 'lldb'
+  }
+
+  dap.adapters.codelldb = {
+    type = 'server',
+    port = "${port}",
+    executable = {
+      command = 'codelldb',
+      args = {"--port", "${port}"},
+    }
+  }
+
+  dap.configurations.cpp = {
+    {
+      name = "Launch (CodeLLDB)",
+      type = "codelldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false,
+    },
+    {
+      name = "Launch (GDB)",
+      type = "gdb",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopAtEntry = false,
+    },
+    {
+      name = "Launch (LLDB)",
+      type = "lldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false,
+    },
+  }
+end
+
+local setup_dap_adapters_dotnet = function(dap)
+  dap.adapters.coreclr = {
+    type = 'executable',
+    command = 'netcoredbg',
+    args = {'--interpreter=vscode'}
+  }
+end
+
+local setup_dap_adapters = function(dap)
+  setup_dap_adapters_cpp(dap)
+  setup_dap_adapters_dotnet(dap)
 end
 
 local setup_dap_keymaps = function()
