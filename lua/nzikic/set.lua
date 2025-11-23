@@ -15,7 +15,7 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 
-vim.opt.undodir = vim.fn.stdpath("data") .. ".undodir"
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 
 vim.opt.undofile = true
 
