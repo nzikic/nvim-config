@@ -1,21 +1,6 @@
-local active_lsp_client = {
-  function()
-    local no_active_lsp_client = 'no LSP client'
-    local buf_ft = vim.api.nvim_get_option_value('filetype', { buf = 0 })
-    local clients = vim.lsp.get_clients()
-    if next(clients) == nil then
-      return no_active_lsp_client
-    end
-    for _, client in ipairs(clients) do
-      ---@diagnostic disable-next-line: undefined-field
-      local filetypes = client.config.filetypes
-      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        return client.name
-      end
-    end
-    return no_active_lsp_client
-  end,
-  icon = '',
+local lsp_status_ignore_copilot = {
+  'lsp_status',
+  ignore_lsp = { 'copilot' },
 }
 
 local buffer_number = {
@@ -25,7 +10,7 @@ local buffer_number = {
   icon = '#'
 }
 
-local M ={
+local M = {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
@@ -52,9 +37,9 @@ local M ={
       },
       sections = {
         lualine_a = { 'mode' },
-        lualine_b = {},
-        lualine_c = { 'diagnostics', 'filename', buffer_number, 'branch', 'diff' },
-        lualine_x = { 'encoding', 'filetype', active_lsp_client },
+        lualine_b = { 'diagnostics', 'filename', buffer_number },
+        lualine_c = {},
+        lualine_x = { 'encoding', 'filetype', lsp_status_ignore_copilot },
         lualine_y = {},
         lualine_z = { 'selectioncount', 'progress', 'location' }
       },
