@@ -87,7 +87,7 @@ return {
     telescope.setup({
       vimgrep_arguments = vimgrep_arguments,
       preview = { filesize = 1 --[[ MB --]] },
-      pickers = { find_files = { theme = "ivy" } },
+      -- pickers = { find_files = { theme = "ivy" } },
       extensions = {
         fzf = {},
         ['ui-select'] = require('telescope.themes').get_dropdown {}
