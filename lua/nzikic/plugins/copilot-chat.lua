@@ -1,9 +1,6 @@
 local M = {
   'CopilotC-Nvim/CopilotChat.nvim',
   opts = function ()
-    local predef_instructions = require('CopilotChat.config.prompts').COPILOT_INSTRUCTIONS.system_prompt
-    local x = require('CopilotChat.config.prompts').Commit
-
     return {
       model = 'claude-sonnet-4.5',
       mappings = {
@@ -12,12 +9,13 @@ local M = {
           insert = ''
         },
       },
-      prompts = {
-        coding_assistant = {
-          system_prompt = predef_instructions .. 'Do things step by step and in small increments. Before answering always analyze the problem and code thoroughly. When answering, always layout analysis and plan of action concisely and in steps. Do implementation only when explicitly asked.',
-          description = 'Coding assistant instructions',
-        },
-      },
+      system_prompt = [[
+- You are expert coding assistant.
+- Do things step by step and in small increments.
+- Before answering always analyze the problem and the code thoroughly.
+- When answering, always layout analysis and plan of action concisely and in steps.
+- Do implementation only when explicitly asked.
+]],
     }
   end,
   event = 'VeryLazy',
