@@ -113,6 +113,9 @@ local setup_dap_keymaps = function()
   vim.keymap.set("n", "<leader>dr", ":lua require\"dapui\".toggle({ reset = true })<CR>")
   vim.keymap.set("n", "<leader>db", ":DapToggleBreakpoint<CR>")
   vim.keymap.set("n", "<leader>dc", ":DapContinue<CR>")
+  vim.keymap.set('n', '<F9>', ":DapStepOut<CR>")
+  vim.keymap.set('n', '<F10>', ":DapStepOver<CR>")
+  vim.keymap.set('n', '<F11>', ":DapStepInto<CR>")
 end
 
 local M = {
