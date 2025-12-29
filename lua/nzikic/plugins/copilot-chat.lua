@@ -1,6 +1,5 @@
 local M = {
   'CopilotC-Nvim/CopilotChat.nvim',
-  version = 'v4.7.4',
   opts = function ()
     local predef_instructions = require('CopilotChat.config.prompts').COPILOT_INSTRUCTIONS.system_prompt
     local x = require('CopilotChat.config.prompts').Commit
