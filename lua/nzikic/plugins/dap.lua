@@ -78,6 +78,17 @@ local setup_dap_adapters_dotnet = function(dap)
     command = 'netcoredbg',
     args = {'--interpreter=vscode'}
   }
+
+  dap.configurations.cs = {
+    {
+      type = 'coreclr',
+      name = 'launch - netcoredbg',
+      request = 'launch',
+      program = function()
+        return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/', 'file')
+      end
+    }
+  }
 end
 
 local setup_dap_adapters_javascript = function(dap)
@@ -131,9 +142,16 @@ local M = {
     dapui.setup()
 
     local dap = require("dap")
+
     setup_dap_listeners(dap, dapui)
     setup_dap_adapters(dap)
     setup_dap_keymaps()
+
+    require('dap.ext.vscode').load_launchjs({
+      ["node"] = { "javascript", "typescript" },
+      ["pwa-node"] = { "javascript", "typescript" },
+      ["coreclr"] = { "cs" }
+    })
   end
 }
 
