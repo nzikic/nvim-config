@@ -147,11 +147,20 @@ local M = {
     setup_dap_adapters(dap)
     setup_dap_keymaps()
 
-    require('dap.ext.vscode').load_launchjs({
+    local launch_json_types = {
+      -- C/C++
+      ["codelldb"] = { "c", "cpp" },
+      ["lldb"] = { "c", "cpp" },
+      ["gdb"] = { "c", "cpp" },
+      -- JavaScript/TypeScript
       ["node"] = { "javascript", "typescript" },
       ["pwa-node"] = { "javascript", "typescript" },
-      ["coreclr"] = { "cs" }
-    })
+      ["pwa-chrome"] = { "javascript", "typescript" },
+      -- .NET
+      ["coreclr"] = { "cs" },
+    }
+
+    require('dap.ext.vscode').load_launchjs(nil, launch_json_types)
   end
 }
 
