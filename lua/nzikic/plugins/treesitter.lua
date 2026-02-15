@@ -7,8 +7,8 @@ return {
       install.compilers = { "cl", "zig", "clang", "gcc" }
     end
 
-    local configs = require("nvim-treesitter.configs")
-    configs.setup({
+    local treesitter = require("nvim-treesitter")
+    treesitter.setup({
       ensure_installed = { "c", "cpp", "cmake", "bash", "vim", "vimdoc", "lua", "javascript" },
       sync_install = false,
       auto_install = true,
