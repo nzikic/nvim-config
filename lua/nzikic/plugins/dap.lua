@@ -38,7 +38,7 @@ local setup_dap_adapters_cpp = function(dap)
     }
   }
 
-  dap.configurations.cpp = {
+  local config_c_cpp = {
     {
       name = "Launch (CodeLLDB)",
       type = "codelldb",
@@ -70,6 +70,9 @@ local setup_dap_adapters_cpp = function(dap)
       stopOnEntry = false,
     },
   }
+
+  dap.configurations.c = config_c_cpp
+  dap.configurations.cpp = config_c_cpp
 end
 
 local setup_dap_adapters_dotnet = function(dap)
