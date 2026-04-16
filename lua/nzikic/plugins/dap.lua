@@ -16,7 +16,7 @@ local setup_dap_listeners = function(dap, dapui)
   end
 end
 
-local setup_dap_adapters_cpp = function(dap)
+local setup_dap_adapters_c_cpp_rust = function(dap)
   dap.adapters.gdb = {
     type = "executable",
     command = "gdb",
@@ -29,16 +29,17 @@ local setup_dap_adapters_cpp = function(dap)
     name = 'lldb'
   }
 
+  local codelldb_command = vim.fn.has('win32') == 1
+      and vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/adapter/codelldb.exe'
+      or 'codelldb'
+
   dap.adapters.codelldb = {
-    type = 'server',
-    port = "${port}",
-    executable = {
-      command = 'codelldb',
-      args = {"--port", "${port}"},
-    }
+    type = 'executable',
+    command = codelldb_command,
+    detached = vim.fn.has('win32') ~= 1,
   }
 
-  local config_c_cpp = {
+  local config_c_cpp_rust = {
     {
       name = "Launch (CodeLLDB)",
       type = "codelldb",
@@ -71,15 +72,16 @@ local setup_dap_adapters_cpp = function(dap)
     },
   }
 
-  dap.configurations.c = config_c_cpp
-  dap.configurations.cpp = config_c_cpp
+  dap.configurations.c = config_c_cpp_rust
+  dap.configurations.cpp = config_c_cpp_rust
+  dap.configurations.rust = config_c_cpp_rust
 end
 
 local setup_dap_adapters_dotnet = function(dap)
   dap.adapters.coreclr = {
     type = 'executable',
     command = 'netcoredbg',
-    args = {'--interpreter=vscode'}
+    args = { '--interpreter=vscode' }
   }
 
   dap.configurations.cs = {
@@ -117,7 +119,7 @@ local setup_dap_adapters_javascript = function(dap)
 end
 
 local setup_dap_adapters = function(dap)
-  setup_dap_adapters_cpp(dap)
+  setup_dap_adapters_c_cpp_rust(dap)
   setup_dap_adapters_dotnet(dap)
   setup_dap_adapters_javascript(dap)
 end
@@ -151,10 +153,10 @@ local M = {
     setup_dap_keymaps()
 
     local launch_json_types = {
-      -- C/C++
-      ["codelldb"] = { "c", "cpp" },
-      ["lldb"] = { "c", "cpp" },
-      ["gdb"] = { "c", "cpp" },
+      -- C/C++/Rust
+      ["codelldb"] = { "c", "cpp", "rust" },
+      ["lldb"] = { "c", "cpp", "rust" },
+      ["gdb"] = { "c", "cpp", "rust" },
       -- JavaScript/TypeScript
       ["node"] = { "javascript", "typescript" },
       ["pwa-node"] = { "javascript", "typescript" },
