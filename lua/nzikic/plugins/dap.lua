@@ -23,12 +23,6 @@ local setup_dap_adapters_c_cpp_rust = function(dap)
     args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
   }
 
-  dap.adapters.lldb = {
-    type = 'executable',
-    command = vim.fn.executable('lldb-dap') == 1 and 'lldb-dap' or 'lldb-vscode',
-    name = 'lldb'
-  }
-
   local codelldb_command = vim.fn.has('win32') == 1
       and vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/adapter/codelldb.exe'
       or 'codelldb'
@@ -36,7 +30,14 @@ local setup_dap_adapters_c_cpp_rust = function(dap)
   dap.adapters.codelldb = {
     type = 'executable',
     command = codelldb_command,
+    detached = vim.fn.has('win32') ~= 1
+  }
+
+  dap.adapters.lldb = {
+    type = 'executable',
+    command = codelldb_command, -- vim.fn.executable('lldb-dap') == 1 and 'lldb-dap' or 'lldb-vscode',
     detached = vim.fn.has('win32') ~= 1,
+    name = 'lldb'
   }
 
   local config_c_cpp_rust = {
