@@ -165,8 +165,6 @@ local M = {
       -- .NET
       ["coreclr"] = { "cs" },
     }
-
-    require('dap.ext.vscode').load_launchjs(nil, launch_json_types)
   end
 }
 
