@@ -84,6 +84,8 @@ local setup_dap_adapters_c_cpp_rust = function(dap)
   dap.configurations.c = config_c_cpp_rust
   dap.configurations.cpp = config_c_cpp_rust
   dap.configurations.rust = config_c_cpp_rust
+  dap.configurations.objc = config_c_cpp_rust
+  dap.configurations.objcpp = config_c_cpp_rust
 end
 
 local setup_dap_adapters_dotnet = function(dap)
