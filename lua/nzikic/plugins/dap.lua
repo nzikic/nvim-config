@@ -173,6 +173,8 @@ local M = {
       -- .NET
       ["coreclr"] = { "cs" },
     }
+
+    require('nvim-dap-virtual-text').setup()
   end
 }
 
