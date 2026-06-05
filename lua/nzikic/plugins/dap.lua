@@ -50,6 +50,7 @@ local setup_dap_adapters_c_cpp_rust = function(dap)
       end,
       cwd = '${workspaceFolder}',
       stopOnEntry = false,
+      expressions = "native",
     },
     {
       name = "Launch (GDB)",
@@ -60,6 +61,13 @@ local setup_dap_adapters_c_cpp_rust = function(dap)
       end,
       cwd = '${workspaceFolder}',
       stopAtEntry = false,
+      setupCommands = {
+        {
+          text = '-enable-pretty-printing',
+          description = 'enable pretty printing',
+          ignoreFailures = false
+        },
+      }
     },
     {
       name = "Launch (LLDB)",
