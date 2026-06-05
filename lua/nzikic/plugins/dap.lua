@@ -141,6 +141,8 @@ local setup_dap_keymaps = function()
   vim.keymap.set('n', '<F9>', ":DapStepOut<CR>")
   vim.keymap.set('n', '<F10>', ":DapStepOver<CR>")
   vim.keymap.set('n', '<F11>', ":DapStepInto<CR>")
+  vim.keymap.set('n', '<leader>dsu', ':lua require"dap".up()<CR>')
+  vim.keymap.set('n', '<leader>dsd', ':lua require"dap".down()<CR>')
 end
 
 local M = {
