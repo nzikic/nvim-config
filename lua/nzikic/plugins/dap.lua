@@ -165,19 +165,6 @@ local M = {
     setup_dap_adapters(dap)
     setup_dap_keymaps()
 
-    local launch_json_types = {
-      -- C/C++/Rust
-      ["codelldb"] = { "c", "cpp", "rust" },
-      ["lldb"] = { "c", "cpp", "rust" },
-      ["gdb"] = { "c", "cpp", "rust" },
-      -- JavaScript/TypeScript
-      ["node"] = { "javascript", "typescript" },
-      ["pwa-node"] = { "javascript", "typescript" },
-      ["pwa-chrome"] = { "javascript", "typescript" },
-      -- .NET
-      ["coreclr"] = { "cs" },
-    }
-
     require('nvim-dap-virtual-text').setup()
   end
 }
