@@ -1,20 +1,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = 'main',
   build = ":TSUpdate",
+  lazy = false,
   config = function()
-    if vim.uv.os_uname().sysname == "Windows_NT" then
-      local install = require("nvim-treesitter.install")
-      install.compilers = { "cl", "zig", "clang", "gcc" }
-    end
-
     local treesitter = require("nvim-treesitter")
-    treesitter.setup({
-      ensure_installed = { "c", "cpp", "cmake", "bash", "vim", "vimdoc", "lua", "javascript" },
-      sync_install = false,
-      auto_install = true,
-      ignore_install = {},
-      highlight = { enable = true },
-      indent = { enable = true },
-    })
+    treesitter.setup()
   end
 }
